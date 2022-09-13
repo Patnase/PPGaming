@@ -21,3 +21,5 @@ commands:
   jobs:
     aliases: ["jobmenu"]
     description: "Get a overview about all jobs"
+  ping:
+    description: "Get your current Ping"

@@ -2,6 +2,7 @@ package de.patnase.ppgaming;
 
 import de.patnase.ppgaming.commands.JobMenuCommand;
 import de.patnase.ppgaming.commands.PayCommand;
+import de.patnase.ppgaming.commands.PingCommand;
 import de.patnase.ppgaming.commands.ShopCommand;
 import de.patnase.ppgaming.economy.EconomySystem;
 import de.patnase.ppgaming.jobsystem.FishingListener;
@@ -37,6 +38,7 @@ public final class Main extends JavaPlugin {
         getCommand("job").setExecutor(new JobManager());
         getCommand("permission").setExecutor(new PermissionManager());
         getCommand("jobs").setExecutor(new JobMenuCommand());
+        getCommand("ping").setExecutor(new PingCommand());
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new ConnectionListeners(), this);

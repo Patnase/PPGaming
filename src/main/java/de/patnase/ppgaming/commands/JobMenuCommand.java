@@ -117,6 +117,8 @@ public class JobMenuCommand implements CommandExecutor {
             jobs.setItem(14, new ItemBuilder(Material.FISHING_ROD).setDisplayname("§9Fisher").setLocalizedName("fisher").build());
 
             player.openInventory(jobs);
+        }else {
+            sender.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7]§c This command has to be executed by a player");
         }
         return false;
     }
