@@ -1,0 +1,23 @@
+name: PPGaming
+version: '${project.version}'
+main: de.patnase.ppgaming.Main
+api-version: 1.19
+authors: [ Patnase ]
+website: https://www.twitch.tv/patnase_live
+commands:
+  money:
+    aliases: ["balance"]
+    description: "Get your current money"
+  pay:
+    description: "Send money to other players"
+  shop:
+    aliases: ["adminshop"]
+    description: "Open the shop menu"
+  job:
+    description: "Manage jobs"
+  permission:
+    aliases: ["perm", "perms"]
+    description: "Manage permissions"
+  jobs:
+    aliases: ["jobmenu"]
+    description: "Get a overview about all jobs"
