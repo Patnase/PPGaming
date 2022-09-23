@@ -1,16 +1,18 @@
 package de.patnase.ppgaming;
 
-import de.patnase.ppgaming.commands.JobMenuCommand;
-import de.patnase.ppgaming.commands.PayCommand;
-import de.patnase.ppgaming.commands.PingCommand;
-import de.patnase.ppgaming.commands.ShopCommand;
+import de.patnase.ppgaming.commands.*;
 import de.patnase.ppgaming.economy.EconomySystem;
+import de.patnase.ppgaming.home.DeleteHomeCommand;
+import de.patnase.ppgaming.home.HomeManager;
+import de.patnase.ppgaming.home.SetHomeCommand;
 import de.patnase.ppgaming.jobsystem.FishingListener;
 import de.patnase.ppgaming.jobsystem.JobManager;
 import de.patnase.ppgaming.jobsystem.BlockBreakListeners;
 import de.patnase.ppgaming.jobsystem.MobKillListeners;
 import de.patnase.ppgaming.listeners.ConnectionListeners;
+import de.patnase.ppgaming.listeners.FirstJoinListener;
 import de.patnase.ppgaming.listeners.InventoryListeners;
+import de.patnase.ppgaming.modCommands.KickCommand;
 import de.patnase.ppgaming.permission.PermissionManager;
 import de.patnase.ppgaming.scoreboard.TabListManager;
 import org.bukkit.Bukkit;
@@ -39,6 +41,14 @@ public final class Main extends JavaPlugin {
         getCommand("permission").setExecutor(new PermissionManager());
         getCommand("jobs").setExecutor(new JobMenuCommand());
         getCommand("ping").setExecutor(new PingCommand());
+        getCommand("invsee").setExecutor(new InventorySeeCommand());
+        getCommand("nick").setExecutor(new NickCommand());
+        //HomeCommands
+        getCommand("sethome").setExecutor(new SetHomeCommand());
+        getCommand("delhome").setExecutor(new DeleteHomeCommand());
+        getCommand("homes").setExecutor(new HomeManager());
+        //ModCommands
+        getCommand("kick").setExecutor(new KickCommand());
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new ConnectionListeners(), this);
@@ -46,6 +56,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new BlockBreakListeners(), this);
         pluginManager.registerEvents(new FishingListener(), this);
         pluginManager.registerEvents(new MobKillListeners(), this);
+        pluginManager.registerEvents(new FirstJoinListener(), this);
 
         tabListManager = new TabListManager();
     }

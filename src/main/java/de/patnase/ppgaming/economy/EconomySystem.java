@@ -2,10 +2,12 @@ package de.patnase.ppgaming.economy;
 
 import com.sun.java.swing.action.OkAction;
 import de.patnase.ppgaming.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,8 +16,10 @@ import org.bukkit.entity.Player;
 import javax.sound.sampled.Line;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class EconomySystem implements CommandExecutor {
+public class EconomySystem implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -119,5 +123,30 @@ public class EconomySystem implements CommandExecutor {
 
         int money  = config.getInt(name + ".money");
         return money >= amount;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        if (args.length == 0) return list;
+        if (args.length == 1){
+            list.add("add");
+            list.add("get");
+            list.add("set");
+            list.add("remove");
+        }else if (args.length == 2){
+            for (Player player : Bukkit.getOnlinePlayers()){
+                list.add(player.getName());
+            }
+        }
+        ArrayList<String> completerList = new ArrayList<>();
+        String currentarg = args[args.length - 1].toLowerCase();
+        for (String s : list){
+            String s1 = s.toLowerCase();
+            if (s1.startsWith(currentarg)){
+                completerList.add(s);
+            }
+        }
+        return completerList;
     }
 }

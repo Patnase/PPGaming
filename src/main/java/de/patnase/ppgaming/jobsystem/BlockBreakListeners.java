@@ -2,7 +2,6 @@ package de.patnase.ppgaming.jobsystem;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -24,125 +23,125 @@ public class BlockBreakListeners implements Listener {
                 if (material == Material.OAK_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.JUNGLE_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.ACACIA_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.SPRUCE_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DARK_OAK_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.BIRCH_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.MANGROVE_LOG){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }
                 break;
             case "miner":
                 if (material == Material.COAL_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.COPPER_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_COAL_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_COPPER_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_DIAMOND_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_EMERALD_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_GOLD_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_IRON_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_LAPIS_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DEEPSLATE_REDSTONE_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.DIAMOND_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.EMERALD_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.GOLD_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.IRON_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.LAPIS_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.REDSTONE_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.NETHER_GOLD_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.NETHER_QUARTZ_ORE){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }
                 break;
             case "farmer":
                 if (material == Material.WHEAT){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.CARROTS){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.BEETROOTS){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }else if (material == Material.POTATOES){
                     addMoney(player.getName(), 25);
                     player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] You just did your job and got §625§a$ §ffor your work");
-                    addJobLevel(player.getName(), getJob(player.getName()), 1);
+                    addJobXp(player.getName(), getJob(player.getName()), 1);
                 }
                 break;
         }
@@ -171,7 +170,7 @@ public class BlockBreakListeners implements Listener {
         }
     }
 
-    public void addJobLevel(String name, String job, Integer xp){
+    public void addJobXp(String name, String job, Integer xp){
         File file = new File("plugins/PPGaming", "jobs.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 

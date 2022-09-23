@@ -31,18 +31,22 @@ public class Sidebar extends ScoreboardBuilder {
         setScore("§7Server Status:", 2);
         setScore("§bBeta", 1);
         setScore(ChatColor.BLACK.toString(), 0);
-        if (getPermission(player.getName()).equalsIgnoreCase("admin")) {
-            setScore("§cAdmin", 7);
-        }else if (getPermission(player.getName()).equalsIgnoreCase("mod")) {
-            setScore("§eModerator", 7);
-        }else if (getPermission(player.getName()).equalsIgnoreCase("beta")) {
-            setScore("§bBeta", 7);
-        }else if (getPermission(player.getName()).equalsIgnoreCase("vip")) {
-            setScore("§9VIP", 7);
-        }else if (getPermission(player.getName()).equalsIgnoreCase("streamer")){
-            setScore("§dStreamer", 7);
+        if (getPermission(player.getName()) != null){
+            if (getPermission(player.getName()).equalsIgnoreCase("admin")) {
+                setScore("§cAdmin", 7);
+            }else if (getPermission(player.getName()).equalsIgnoreCase("mod")) {
+                setScore("§eModerator", 7);
+            }else if (getPermission(player.getName()).equalsIgnoreCase("beta")) {
+                setScore("§bBeta", 7);
+            }else if (getPermission(player.getName()).equalsIgnoreCase("vip")) {
+                setScore("§9VIP", 7);
+            }else if (getPermission(player.getName()).equalsIgnoreCase("streamer")){
+                setScore("§dStreamer", 7);
+            }else if (getPermission(player.getName()).equalsIgnoreCase("player")){
+                setScore("§aPlayer", 7);
+            }
         }else {
-            setScore("aPlayer", 7);
+            setScore("§aPlayer", 7);
         }
 
     }

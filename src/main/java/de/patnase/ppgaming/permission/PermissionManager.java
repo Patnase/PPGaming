@@ -1,15 +1,20 @@
 package de.patnase.ppgaming.permission;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PermissionManager implements CommandExecutor {
+public class PermissionManager implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 2) {
@@ -37,6 +42,9 @@ public class PermissionManager implements CommandExecutor {
                         sender.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] §2" + target + "'s §apermission §f has been updated to: §6" + getPermission(target));
                     } else if (args[2].equalsIgnoreCase("streamer")) {
                         setPermission(target, "streamer");
+                        sender.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] §2" + target + "'s §apermission §f has been updated to: §6" + getPermission(target));
+                    }else if (args[2].equalsIgnoreCase("player")) {
+                        setPermission(target, "player");
                         sender.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] §2" + target + "'s §apermission §f has been updated to: §6" + getPermission(target));
                     } else {
                         sender.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7] §cThis permission doesn't exist");
@@ -79,5 +87,35 @@ public class PermissionManager implements CommandExecutor {
 
         String actualpermission = config.getString(name + ".permission", permission);
         return actualpermission.equals(permission);
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        if (args.length == 0) return list;
+        if (args.length == 1) {
+            list.add("set");
+            list.add("get");
+        }else if (args.length == 2){
+            for (Player player : Bukkit.getOnlinePlayers()){
+                list.add(player.getName());
+            }
+        }else if (args.length == 3){
+            list.add("admin");
+            list.add("mod");
+            list.add("vip");
+            list.add("streamer");
+            list.add("beta");
+            list.add("player");
+        }
+        ArrayList<String> completerList = new ArrayList<>();
+        String currentarg = args[args.length - 1].toLowerCase();
+        for (String s : list){
+            String s1 = s.toLowerCase();
+            if (s1.startsWith(currentarg)){
+                completerList.add(s);
+            }
+        }
+        return completerList;
     }
 }

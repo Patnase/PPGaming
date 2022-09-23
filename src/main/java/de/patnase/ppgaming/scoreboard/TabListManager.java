@@ -74,16 +74,20 @@ public class TabListManager {
 
 
         for (Player target : Bukkit.getOnlinePlayers()) {
-            if (getPermission(target.getName()).equalsIgnoreCase("admin")){
-                admins.addEntry(target.getName());
-            }else if (getPermission(target.getName()).equalsIgnoreCase("mod")){
-                mods.addEntry(target.getName());
-            }else if (getPermission(target.getName()).equalsIgnoreCase("beta")){
-                betas.addEntry(target.getName());
-            }else if (getPermission(target.getName()).equalsIgnoreCase("vip")){
-                vips.addEntry(target.getName());
-            }else if (getPermission(target.getName()).equalsIgnoreCase("streamer")){
-                streamers.addEntry(target.getName());
+            if (getPermission(player.getName()) != null){
+                if (getPermission(target.getName()).equalsIgnoreCase("admin")){
+                    admins.addEntry(target.getName());
+                }else if (getPermission(target.getName()).equalsIgnoreCase("mod")){
+                    mods.addEntry(target.getName());
+                }else if (getPermission(target.getName()).equalsIgnoreCase("beta")){
+                    betas.addEntry(target.getName());
+                }else if (getPermission(target.getName()).equalsIgnoreCase("vip")){
+                    vips.addEntry(target.getName());
+                }else if (getPermission(target.getName()).equalsIgnoreCase("streamer")){
+                    streamers.addEntry(target.getName());
+                }else if (getPermission(target.getName()).equalsIgnoreCase("player")){
+                    players.addEntry(target.getName());
+                }
             }else {
                 players.addEntry(target.getName());
             }

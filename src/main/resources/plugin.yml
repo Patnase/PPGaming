@@ -22,4 +22,19 @@ commands:
     aliases: ["jobmenu"]
     description: "Get a overview about all jobs"
   ping:
-    description: "Get your current Ping"
+    description: "Get your current ping"
+  invsee:
+    description: "See the Inventory of a player"
+  nick:
+    description: "Change your nickname"
+    aliases: ["nickname"]
+  kick:
+    description: "Kick a player"
+  sethome:
+    description: "Set your current location as home"
+  delhome:
+    description: "Delete a home"
+    aliases: ["deletehome"]
+  homes:
+    description: "Get a overview about your homes"
+    aliases: ["home", "homemenu", "listhome", "listhomes", "warps"]

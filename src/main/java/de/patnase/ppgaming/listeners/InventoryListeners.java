@@ -1,6 +1,7 @@
 package de.patnase.ppgaming.listeners;
 
 import de.patnase.ppgaming.util.ItemBuilder;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -80,6 +81,42 @@ public class InventoryListeners implements Listener {
                     setJob(player.getName(), "fisher");
                     player.closeInventory();
                     break;
+                case "cancel":
+                    setJob(player.getName(), null);
+                    player.closeInventory();
+                    break;
+            }
+        }else if (event.getView().getTitle().equals("§6§lHomes")){
+            event.setCancelled(true);
+            switch (event.getCurrentItem().getItemMeta().getLocalizedName()){
+                case "1":
+                    if (getHome(player.getName(), 1) != null){
+                        player.teleport(getHome(player.getName(), 1));
+                    }
+                    player.closeInventory();
+                    player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7]§f You have been teleported");
+                    break;
+                case "2":
+                    if (getHome(player.getName(), 2) != null){
+                        player.teleport(getHome(player.getName(), 2));
+                    }
+                    player.closeInventory();
+                    player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7]§f You have been teleported");
+                    break;
+                case "3":
+                    if (getHome(player.getName(), 3) != null){
+                        player.teleport(getHome(player.getName(), 3));
+                    }
+                    player.closeInventory();
+                    player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7]§f You have been teleported");
+                    break;
+                case "4":
+                    if (getHome(player.getName(), 4) != null){
+                        player.teleport(getHome(player.getName(), 4));
+                    }
+                    player.closeInventory();
+                    player.sendMessage("§7[§6§lP§c§lP§3§lG§baming§7]§f You have been teleported");
+                    break;
             }
         }
     }
@@ -117,5 +154,12 @@ public class InventoryListeners implements Listener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Location getHome(String player, Integer id){
+        File file = new File("plugins/PPGaming", "homes.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+
+        return (Location) config.get(player + ".home" + id + ".location");
     }
 }

@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.io.File;
@@ -53,61 +52,114 @@ public class JobMenuCommand implements CommandExecutor {
             jobs.setItem(42, new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayname(" ").build());
             jobs.setItem(43, new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayname(" ").build());
             jobs.setItem(44, new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayname(" ").build());
+            jobs.setItem(15, new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setDisplayname(" ").build());
             //leveling
-            if (getJob(player.getName()).equalsIgnoreCase("timber")){
-                jobs.setItem(28, new ItemBuilder(Material.IRON_AXE).setDisplayname("Current Job: §aTimber").build());
-            }else if (getJob(player.getName()).equalsIgnoreCase("miner")){
-                jobs.setItem(28, new ItemBuilder(Material.DIAMOND_PICKAXE).setDisplayname("Current Job: §6Miner").build());
-            }else if (getJob(player.getName()).equalsIgnoreCase("farmer")){
-                jobs.setItem(28, new ItemBuilder(Material.IRON_HOE).setDisplayname("Curent Job: §2Farmer").build());
-            }else if (getJob(player.getName()).equalsIgnoreCase("butcher")){
-                jobs.setItem(28, new ItemBuilder(Material.STONE_SWORD).setDisplayname("Current Job: §5Butcher").build());
-            }else if (getJob(player.getName()).equalsIgnoreCase("fisher")){
-                jobs.setItem(28, new ItemBuilder(Material.FISHING_ROD).setDisplayname("Current Job: §9Fisher").build());
+            if (getJob(player.getName()) != null){
+                if (getJob(player.getName()).equalsIgnoreCase("timber")){
+                    jobs.setItem(28, new ItemBuilder(Material.IRON_AXE).setDisplayname("Current Job: §aTimber").build());
+                }else if (getJob(player.getName()).equalsIgnoreCase("miner")){
+                    jobs.setItem(28, new ItemBuilder(Material.DIAMOND_PICKAXE).setDisplayname("Current Job: §6Miner").build());
+                }else if (getJob(player.getName()).equalsIgnoreCase("farmer")){
+                    jobs.setItem(28, new ItemBuilder(Material.IRON_HOE).setDisplayname("Curent Job: §2Farmer").build());
+                }else if (getJob(player.getName()).equalsIgnoreCase("butcher")){
+                    jobs.setItem(28, new ItemBuilder(Material.STONE_SWORD).setDisplayname("Current Job: §5Butcher").build());
+                }else if (getJob(player.getName()).equalsIgnoreCase("fisher")) {
+                    jobs.setItem(28, new ItemBuilder(Material.FISHING_ROD).setDisplayname("Current Job: §9Fisher").build());
+                }
+            }else {
+                jobs.setItem(28, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setDisplayname("§cNo Job").build());
             }
 
-            if (getJobLevel(player.getName(), getJob(player.getName())) >= 0 && getJobLevel(player.getName(), getJob(player.getName())) < 20) {
-                jobs.setItem(30, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-            }else if (getJobLevel(player.getName(), getJob(player.getName())) == null){
-                jobs.setItem(30, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-            }else if (getJobLevel(player.getName(), getJob(player.getName())) >= 20 && getJobLevel(player.getName(), getJob(player.getName())) < 40){
-                jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-            }else if (getJobLevel(player.getName(), getJob(player.getName())) >= 40 && getJobLevel(player.getName(), getJob(player.getName())) < 60){
-                jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-            }else if (getJobLevel(player.getName(), getJob(player.getName())) >= 60 && getJobLevel(player.getName(), getJob(player.getName())) < 80){
-                jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-            }else if (getJobLevel(player.getName(), getJob(player.getName())) >= 80 && getJobLevel(player.getName(), getJob(player.getName())) < 100){
-                jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobLevel(player.getName(), getJob(player.getName())) + "/§a100").build());
-            }else if (getJobLevel(player.getName(), getJob(player.getName())) >= 100){
-                jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").build());
-                jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").build());
-                jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").build());
-                jobs.setItem(33, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").build());
-                jobs.setItem(34, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").build());
+            if (getJobLevel(player.getName(), getJob(player.getName())) != null && getJobXp(player.getName(), getJob(player.getName())) != null) {
+                if (getJobLevel(player.getName(), getJob(player.getName())) == 0) {
+                    if (getJobXp(player.getName(), getJob(player.getName())) >= 0 && getJobXp(player.getName(), getJob(player.getName())) < 20) {
+                        jobs.setItem(30, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) == null) {
+                        jobs.setItem(30, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 20 && getJobXp(player.getName(), getJob(player.getName())) < 40) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 40 && getJobXp(player.getName(), getJob(player.getName())) < 60) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 60 && getJobXp(player.getName(), getJob(player.getName())) < 80) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 80 && getJobXp(player.getName(), getJob(player.getName())) < 100) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(33, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 100) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    }
+                } else {
+                    if (getJobXp(player.getName(), getJob(player.getName())) >= 0 && getJobXp(player.getName(), getJob(player.getName())) < 20) {
+                        jobs.setItem(30, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) == null) {
+                        jobs.setItem(30, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 20 && getJobXp(player.getName(), getJob(player.getName())) < 40) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 40 && getJobXp(player.getName(), getJob(player.getName())) < 60) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 60 && getJobXp(player.getName(), getJob(player.getName())) < 80) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 80 && getJobXp(player.getName(), getJob(player.getName())) < 100) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayname("§7XP: " + getJobXp(player.getName(), getJob(player.getName())) + "/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    } else if (getJobXp(player.getName(), getJob(player.getName())) >= 100) {
+                        jobs.setItem(30, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(31, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(32, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(33, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                        jobs.setItem(34, new ItemBuilder(Material.LIME_STAINED_GLASS_PANE).setDisplayname("§7XP: 100/§a100").setLore("§5Level: §d" + getJobLevel(player.getName(), getJob(player.getName()))).build());
+                    }
+                }
             }
             //jobs
             jobs.setItem(10, new ItemBuilder(Material.IRON_AXE).setDisplayname("§aTimber").setLocalizedName("timber").build());
@@ -115,6 +167,9 @@ public class JobMenuCommand implements CommandExecutor {
             jobs.setItem(12, new ItemBuilder(Material.IRON_HOE).setDisplayname("§2Farmer").setLocalizedName("farmer").build());
             jobs.setItem(13, new ItemBuilder(Material.STONE_SWORD).setDisplayname("§5Butcher").setLocalizedName("butcher").build());
             jobs.setItem(14, new ItemBuilder(Material.FISHING_ROD).setDisplayname("§9Fisher").setLocalizedName("fisher").build());
+
+            //util
+            jobs.setItem(16, new ItemBuilder(Material.RED_STAINED_GLASS_PANE).setDisplayname("§cCancel current job").setLocalizedName("cancel").build());
 
             player.openInventory(jobs);
         }else {
@@ -131,16 +186,24 @@ public class JobMenuCommand implements CommandExecutor {
         return job;
     }
 
+    public Integer getJobXp(String name, String job){
+        File file = new File("plugins/PPGaming", "jobs.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+
+        Integer jobxp;
+        if (config.get(name + "." + job + ".xp") != null){
+            jobxp = (Integer) config.get(name + "." + job + ".xp");
+        }else {
+            jobxp = 0;
+        }
+        return jobxp;
+    }
+
     public Integer getJobLevel(String name, String job){
         File file = new File("plugins/PPGaming", "jobs.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
-        Integer joblevel;
-        if (config.get(name + "." + job + ".level") != null){
-            joblevel = (Integer) config.get(name + "." + job + ".xp");
-        }else {
-            joblevel = 0;
-        }
-        return joblevel;
+        Integer JobLevel = config.getInt(name + "." + job + ".lvl");
+        return JobLevel;
     }
 }
